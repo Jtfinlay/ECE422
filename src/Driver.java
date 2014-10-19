@@ -12,7 +12,7 @@ public class Driver
         Generator.generate(in, 7);
 
         // Execute primary
-        PrimaryVariant primary = new PrimaryVariant(in, out, .8, 1000);
+        PrimaryVariant primary = new PrimaryVariant(in, out, .0008, 7);
 
         try
         {

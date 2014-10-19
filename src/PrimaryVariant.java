@@ -8,11 +8,13 @@ public class PrimaryVariant extends Thread
     int[] values;
     Timer t;
     String fout;
+    double failure;
 
-    public PrimaryVariant(String fileInput, String fileOutput, double HAZARD, int timeLimit)
+    public PrimaryVariant(String fileInput, String fileOutput, double failure, int timeLimit)
     {
         values = FileManager.readFile(fileInput);
         fout = fileOutput;
+        this.failure = failure;
 
         t = new Timer();
         Watchdog w = new Watchdog(this);
@@ -28,14 +30,22 @@ public class PrimaryVariant extends Thread
         {
             HeapSort sorter = new HeapSort();
             int[] result = sorter.sort(values);
-            System.out.println("Primary has " + sorter.mem + " accesses.");
 
+            // Error check
+            double error = Math.random();
+            if (error > 0.5 && error < .5 + sorter.mem * failure)
+                throw new InterruptedException("Random error generated!");
 
             FileManager.writeFile(fout, result);
             t.cancel();
 
         }
         catch (ThreadDeath td)
+        {
+            t.cancel();
+            throw new ThreadDeath();
+        }
+        catch (InterruptedException e)
         {
             t.cancel();
             throw new ThreadDeath();

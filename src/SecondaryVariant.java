@@ -8,10 +8,12 @@ public class SecondaryVariant extends Thread
     int[] values;
     Timer t;
     String fout;
+    double failure;
 
-    public SecondaryVariant(String fileInput, String fileOutput, double HAZARD, int timeLimit)
+    public SecondaryVariant(String fileInput, String fileOutput, double failure, int timeLimit)
     {
         fout = fileOutput;
+        this.failure = failure;
         values = FileManager.readFile(fileInput);
 
         t = new Timer();
@@ -30,16 +32,23 @@ public class SecondaryVariant extends Thread
             InsertionSort sorter = new InsertionSort();
 	        System.loadLibrary("insertionsort");
             int[] result = sorter.insertsort(values);
-            System.out.println("Secondary has " + result[result.length-1] + " accesses.");
 
             int[] actual = new int[result.length-1];
             for (int i=0; i<actual.length; i++) actual[i] = result[i];
+
+            double error = Math.random();
+            if (error > 0.5 && error < .5 + result[result.length-1] * failure)
+                throw new InterruptedException("Random error generated!");
 
             FileManager.writeFile(fout, actual);
 
             t.cancel();
         }
         catch (ThreadDeath td)
+        {
+            t.cancel();
+            throw new ThreadDeath();
+        } catch (InterruptedException e)
         {
             t.cancel();
             throw new ThreadDeath();
