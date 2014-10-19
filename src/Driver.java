@@ -18,39 +18,38 @@ public class Driver
         {
             primary.join();
 
-            if (Adjudicator.testResult(in, out))
-                System.out.println("\n1st success");
-            else
-                System.out.println("\n1st failure");
+            if (Adjudicator.testResult(in, out)) {
+                System.out.println("Primary is successful!");
+                return;
+            } else {
+                System.out.println("Primary has failed the Adjudicator test.");
+            }
         }
         catch (InterruptedException e)
         {
-            // Failure
-            System.out.println("\n1st failure");
+            System.out.println("Primary has been interrupted.");
+            e.printStackTrace();
         }
 
-        // If pass adjudicator, return result
-
-        // If adjudicator rejects, timer kills, or primary has error:
-        // - Print error message
-        // - Execute shadow
+        // Execute secondary
         SecondaryVariant secondary = new SecondaryVariant(in, out, .8, 1000);
         try
         {
             secondary.join();
-            System.out.println("\n2nd success");
+            if (Adjudicator.testResult(in, out)) {
+                System.out.println("Secondary is successful!");
+                return;
+            } else {
+                System.out.println("Secondary has failed the Adjudicator test.");
+            }
         }
         catch (InterruptedException e)
         {
-            System.out.println("\n2nd failure");
+            System.out.println("Secondary has been interrupted");
+            e.printStackTrace();
         }
 
-        // If pass adjudicator, return result
-
-        // If adjudicator rejects, timer kills, or shadow has error:
-        // - Print error message
-        // - Delete output file
-        // - Terminate program
+        FileManager.deleteFile(out);
 
         System.out.println("exit");
     }

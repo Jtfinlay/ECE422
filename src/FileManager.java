@@ -56,4 +56,12 @@ public class FileManager {
         } catch (FileNotFoundException e)
         {}
     }
+
+
+    public static void deleteFile(String fileName)
+    {
+        File f = new File(fileName);
+        if (f.exists())
+            f.delete();
+    }
 }
