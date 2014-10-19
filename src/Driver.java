@@ -9,7 +9,7 @@ public class Driver
         String in = "in.txt";
         String out = "out.txt";
 
-        Generator.generate(in, 1000);
+        Generator.generate(in, 7);
 
         // Execute primary
         PrimaryVariant primary = new PrimaryVariant(in, out, .8, 1000);
