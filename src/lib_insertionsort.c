@@ -3,7 +3,7 @@
 #include <jni.h>
 #include "InsertionSort.h"
 
-JNIEXPORT jintArray JNICALL Java_InsertionSort_sort
+JNIEXPORT jintArray JNICALL Java_InsertionSort_insertsort
 (JNIEnv *env, jobject object, jintArray values)
 {
     jsize len;

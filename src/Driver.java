@@ -14,12 +14,12 @@ public class Driver
         {
             primary.join();
             // Success
-            System.out.println("1st success");
+            System.out.println("\n1st success");
         }
         catch (InterruptedException e)
         {
             // Failure
-            System.out.println("1st failure");
+            System.out.println("\n1st failure");
         }
 
         // If pass adjudicator, return result
@@ -31,11 +31,11 @@ public class Driver
         try
         {
             secondary.join();
-            System.out.println("2nd success");
+            System.out.println("\n2nd success");
         }
         catch (InterruptedException e)
         {
-            System.out.println("2nd failure");
+            System.out.println("\n2nd failure");
         }
 
         // If pass adjudicator, return result

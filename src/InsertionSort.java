@@ -3,5 +3,5 @@
  */
 public class InsertionSort {
 
-    public native int[] sort(int[] values);
+    public native int[] insertsort(int[] values);
 }

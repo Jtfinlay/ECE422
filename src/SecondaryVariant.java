@@ -27,7 +27,8 @@ public class SecondaryVariant extends Thread
         {
 
             InsertionSort sorter = new InsertionSort();
-            int[] result = sorter.sort(values);
+	    System.loadLibrary("insertionsort");
+            int[] result = sorter.insertsort(values);
 
             System.out.print("\nSecondary: ");
             for (int r : result)
