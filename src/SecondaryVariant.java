@@ -30,7 +30,7 @@ public class SecondaryVariant extends Thread
             InsertionSort sorter = new InsertionSort();
 	        System.loadLibrary("insertionsort");
             int[] result = sorter.insertsort(values);
-            System.out.println("Secondary has " + result[result.length] + " accesses.");
+            System.out.println("Secondary has " + result[result.length-1] + " accesses.");
 
             int[] actual = new int[result.length-1];
             for (int i=0; i<actual.length; i++) actual[i] = result[i];
