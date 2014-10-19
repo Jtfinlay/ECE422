@@ -7,14 +7,20 @@ public class Driver
     public static void main(String[] args) {
         // Generate integer values
 
+        String in = "in.txt";
+        String out = "out.txt";
+
         // Execute primary
-        PrimaryVariant primary = new PrimaryVariant("in", "out", .8, 1000);
+        PrimaryVariant primary = new PrimaryVariant(in, out, .8, 1000);
 
         try
         {
             primary.join();
-            // Success
-            System.out.println("\n1st success");
+
+            if (Adjudicator.testResult(in, out))
+                System.out.println("\n1st success");
+            else
+                System.out.println("\n1st failure");
         }
         catch (InterruptedException e)
         {
@@ -27,7 +33,7 @@ public class Driver
         // If adjudicator rejects, timer kills, or primary has error:
         // - Print error message
         // - Execute shadow
-        SecondaryVariant secondary = new SecondaryVariant("in", "out", .8, 1000);
+        SecondaryVariant secondary = new SecondaryVariant(in, out, .8, 1000);
         try
         {
             secondary.join();

@@ -3,8 +3,8 @@ import java.util.*;
 /**
  * Created by James on 10/19/2014.
  */
-public class HeapSort extends Thread {
-
+public class HeapSort extends Thread
+{
     int[] values;
 
     /**

@@ -7,11 +7,12 @@ public class SecondaryVariant extends Thread
 {
     int[] values;
     Timer t;
+    String fout;
 
     public SecondaryVariant(String fileInput, String fileOutput, double HAZARD, int timeLimit)
     {
-        // TODO: Load fileInput into array
-        values = new int[]{1,4,-3,6,8,9,3};
+        fout = fileOutput;
+        values = FileManager.readFile(fileInput);
 
         t = new Timer();
         Watchdog w = new Watchdog(this);
@@ -27,14 +28,11 @@ public class SecondaryVariant extends Thread
         {
 
             InsertionSort sorter = new InsertionSort();
-	    System.loadLibrary("insertionsort");
+	        System.loadLibrary("insertionsort");
             int[] result = sorter.insertsort(values);
 
-            System.out.print("\nSecondary: ");
-            for (int r : result)
-                System.out.print(r +",");
+            FileManager.writeFile(fout, result);
 
-            // TODO: Output array into fileOutput
             t.cancel();
         }
         catch (ThreadDeath td)
