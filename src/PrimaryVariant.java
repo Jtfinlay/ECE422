@@ -49,8 +49,4 @@ public class PrimaryVariant extends Thread
         }
     }
 
-    public void cancel()
-    {
-        t.cancel();
-    }
 }
