@@ -5,10 +5,11 @@ public class Driver
 {
 
     public static void main(String[] args) {
-        // Generate integer values
 
         String in = "in.txt";
         String out = "out.txt";
+
+        Generator.generate(in, 1000);
 
         // Execute primary
         PrimaryVariant primary = new PrimaryVariant(in, out, .8, 1000);
