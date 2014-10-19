@@ -58,8 +58,6 @@ public class Driver
         }
 
         FileManager.deleteFile(out);
-
-        System.out.println("exit");
     }
 
 }

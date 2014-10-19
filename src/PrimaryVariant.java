@@ -42,10 +42,10 @@ public class PrimaryVariant extends Thread
             t.cancel();
 
         }
-        catch (ThreadDeath td)
+        catch (Error e)
         {
             t.cancel();
-            throw new ThreadDeath();
+            throw e;
         }
     }
 
