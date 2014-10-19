@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <jni.h>
 #include "InsertionSort.h"
 
@@ -6,7 +7,7 @@ JNIEXPORT jintArray JNICALL Java_InsertionSort_sort
 (JNIEnv *env, jobject object, jintArray values)
 {
     jsize len;
-    jint x, arr;
+    jint x, *arr;
     int i, j;
     jboolean *is_copy;
     jintArray result;
@@ -19,7 +20,7 @@ JNIEXPORT jintArray JNICALL Java_InsertionSort_sort
         exit(0);
     }
 
-    for (i = 1; i < len, i++)
+    for (i = 1; i < len; i++)
     {
         x = arr[i];
         j = i;
