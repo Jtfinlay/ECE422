@@ -1,20 +1,26 @@
+import java.security.InvalidParameterException;
+
 /**
  * Created by James on 10/19/2014.
  */
 public class Driver
 {
 
-    public static void main(String[] args) {
-
-        String in = "in.txt";
-        String out = "out.txt";
-
-        Generator.generate(in, 7);
+    public static void main(String[] args)
+    {
+        if (args.length != 5)
+            throw new InvalidParameterException("Arguments expected: File-in(string), File-out(string), Primary "
+                    + "failure(double), Secondary Failure(double), Time limit (int)");
+        String in = args[0];
+        String out = args[1];
+        double pFailure = Double.parseDouble(args[2]);
+        double sFailure = Double.parseDouble(args[3]);
+        int timeLimit = Integer.parseInt(args[4]);
 
         FileManager.deleteFile(out);
 
         // Execute primary
-        PrimaryVariant primary = new PrimaryVariant(in, out, .0008, 7);
+        PrimaryVariant primary = new PrimaryVariant(in, out, pFailure, timeLimit);
 
         try
         {
@@ -34,7 +40,7 @@ public class Driver
         }
 
         // Execute secondary
-        SecondaryVariant secondary = new SecondaryVariant(in, out, .8, 1000);
+        SecondaryVariant secondary = new SecondaryVariant(in, out, sFailure, timeLimit);
         try
         {
             secondary.join();

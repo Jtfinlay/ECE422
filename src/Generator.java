@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 import java.util.Random;
 
 /**
@@ -6,8 +7,14 @@ import java.util.Random;
 public class Generator
 {
 
-    public static void generate(String fileName, int valueCount)
+    public static void main(String[] args)
     {
+        if (args.length != 2)
+            throw new InvalidParameterException("Two arguments expected: String, int");
+
+        String fileName = args[0];
+        int valueCount = Integer.parseInt(args[1]);
+
         Random rand = new Random();
         int values[] = new int[valueCount];
 
