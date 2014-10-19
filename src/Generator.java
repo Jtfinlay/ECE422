@@ -10,7 +10,8 @@ public class Generator
     public static void main(String[] args)
     {
         if (args.length != 2)
-            throw new InvalidParameterException("Two arguments expected: String, int");
+            throw new InvalidParameterException("Two arguments expected: File-in(string)"
+		+ " value_count(int)");
 
         String fileName = args[0];
         int valueCount = Integer.parseInt(args[1]);
