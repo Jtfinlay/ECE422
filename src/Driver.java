@@ -14,10 +14,12 @@ public class Driver
         {
             primary.join();
             // Success
+            System.out.println("1st success");
         }
         catch (InterruptedException e)
         {
             // Failure
+            System.out.println("1st failure");
         }
 
         // If pass adjudicator, return result
@@ -26,14 +28,14 @@ public class Driver
         // - Print error message
         // - Execute shadow
         SecondaryVariant secondary = new SecondaryVariant("in", "out", .8, 1000);
-
         try
         {
             secondary.join();
+            System.out.println("2nd success");
         }
         catch (InterruptedException e)
         {
-
+            System.out.println("2nd failure");
         }
 
         // If pass adjudicator, return result
@@ -42,6 +44,8 @@ public class Driver
         // - Print error message
         // - Delete output file
         // - Terminate program
+
+        System.out.println("exit");
     }
 
 }

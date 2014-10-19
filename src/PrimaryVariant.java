@@ -6,6 +6,7 @@ import java.util.Timer;
 public class PrimaryVariant extends Thread
 {
     int[] values;
+    Timer t;
 
     public PrimaryVariant(String fileInput, String fileOutput, double HAZARD, int timeLimit)
     {
@@ -14,7 +15,7 @@ public class PrimaryVariant extends Thread
 
 
 
-        Timer t = new Timer();
+        t = new Timer();
         Watchdog w = new Watchdog(this);
         t.schedule(w, timeLimit);
 
@@ -29,10 +30,17 @@ public class PrimaryVariant extends Thread
             HeapSort sorter = new HeapSort();
             int[] result = sorter.sort(values);
 
+            System.out.print("\nPrimary: ");
+            for (int r : result)
+                    System.out.print(r +",");
+
             // TODO: Output array into fileOutput
+            t.cancel();
+
         }
         catch (ThreadDeath td)
         {
+            t.cancel();
             throw new ThreadDeath();
         }
     }
