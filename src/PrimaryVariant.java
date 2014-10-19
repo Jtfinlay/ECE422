@@ -28,6 +28,8 @@ public class PrimaryVariant extends Thread
         {
             HeapSort sorter = new HeapSort();
             int[] result = sorter.sort(values);
+            System.out.println("Primary has " + sorter.mem + " accesses.");
+
 
             FileManager.writeFile(fout, result);
             t.cancel();

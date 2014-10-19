@@ -26,9 +26,11 @@ public class FileManager {
         }
         catch (FileNotFoundException e)
         {
+            e.printStackTrace();
         }
         catch (IOException e)
         {
+            e.printStackTrace();
         }
         finally
         {
@@ -53,8 +55,11 @@ public class FileManager {
             }
             writer.close();
         } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         } catch (FileNotFoundException e)
-        {}
+        {
+            e.printStackTrace();
+        }
     }
 
 
