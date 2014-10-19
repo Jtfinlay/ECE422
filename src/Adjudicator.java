@@ -7,6 +7,9 @@ public class Adjudicator {
 
     public static boolean testResult(String fileInput, String fileOutput)
     {
+        if (!FileManager.fileExists(fileInput)) return false;
+        if (!FileManager.fileExists(fileOutput)) return false;
+
         int[] input = FileManager.readFile(fileInput);
         int[] output = FileManager.readFile(fileOutput);
         Arrays.sort(input);

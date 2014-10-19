@@ -69,4 +69,9 @@ public class FileManager {
         if (f.exists())
             f.delete();
     }
+    public static boolean fileExists(String fileName)
+    {
+        File f = new File(fileName);
+        return f.exists();
+    }
 }

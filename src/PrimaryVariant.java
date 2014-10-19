@@ -33,8 +33,10 @@ public class PrimaryVariant extends Thread
 
             // Error check
             double error = Math.random();
-            if (error > 0.5 && error < .5 + sorter.mem * failure)
-                throw new InterruptedException("Random error generated!");
+            if (error > 0.5 && error < .5 + sorter.mem * failure) {
+                t.cancel();
+                return;
+            }
 
             FileManager.writeFile(fout, result);
             t.cancel();
@@ -45,10 +47,10 @@ public class PrimaryVariant extends Thread
             t.cancel();
             throw new ThreadDeath();
         }
-        catch (InterruptedException e)
-        {
-            t.cancel();
-            throw new ThreadDeath();
-        }
+    }
+
+    public void cancel()
+    {
+        t.cancel();
     }
 }

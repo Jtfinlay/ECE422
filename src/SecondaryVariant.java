@@ -38,17 +38,15 @@ public class SecondaryVariant extends Thread
 
             double error = Math.random();
             if (error > 0.5 && error < .5 + result[result.length-1] * failure)
-                throw new InterruptedException("Random error generated!");
+            {
+                t.cancel();
+            }
 
             FileManager.writeFile(fout, actual);
 
             t.cancel();
         }
         catch (ThreadDeath td)
-        {
-            t.cancel();
-            throw new ThreadDeath();
-        } catch (InterruptedException e)
         {
             t.cancel();
             throw new ThreadDeath();

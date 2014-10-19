@@ -11,6 +11,8 @@ public class Driver
 
         Generator.generate(in, 7);
 
+        FileManager.deleteFile(out);
+
         // Execute primary
         PrimaryVariant primary = new PrimaryVariant(in, out, .0008, 7);
 
@@ -22,7 +24,7 @@ public class Driver
                 System.out.println("Primary is successful!");
                 return;
             } else {
-                System.out.println("Primary has failed the Adjudicator test.");
+                System.out.println("Primary has not passed adjudicator or has failed.");
             }
         }
         catch (InterruptedException e)
@@ -40,7 +42,7 @@ public class Driver
                 System.out.println("Secondary is successful!");
                 return;
             } else {
-                System.out.println("Secondary has failed the Adjudicator test.");
+                System.out.println("Secondary has not passed adjudicator or has failed.");
             }
         }
         catch (InterruptedException e)
